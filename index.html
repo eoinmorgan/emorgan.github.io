@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Your Name — Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style> html { scroll-behavior: smooth; } </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- HERO -->
+  <header class="py-16 text-center">
+    <img src="your-photo.jpg" alt="Your Name" class="mx-auto w-40 h-40 rounded-full object-cover shadow mb-6">
+    <h1 class="text-4xl font-bold">Eoin Morgan - CS tutor</h1>
+  </header>
+
+
+  <main class="max-w-3xl mx-auto px-4">
+    <p class="text-gray-600 max-w-2xl mx-auto mt-3">
+      Hi — I’m <strong>Eoin</strong>. I’m available for computer science tutoring for university and high school students looking for extra help in <strong>North County San Diego or via Zoom</strong>.
+    </p>
+    <p class="text-gray-600 max-w-2xl mx-auto mt-3">
+        I know how difficult it is to get 1-on-1 help with computer science, especially at public universities. So many of these classes are taught with a single teaching style that doesn’t work for all students. Sometimes you just need a bit more attention and the course materials explained in a different way for it all to "click".
+    </p>
+
+    <section id="topics" class="py-10">
+      <h2 class="text-2xl font-semibold text-center mb-6">How I can help</h2>
+      <ul class="space-y-3">
+        <li class="bg-white p-4 rounded-lg shadow">Re-explaining CS fundamentals/class materials in a more intuitive way</li>
+        <li class="bg-white p-4 rounded-lg shadow">Exam prep, going over test bank questions</li>
+        <li class="bg-white p-4 rounded-lg shadow">Help debug complex issues with large class projects</li>
+        <li class="bg-white p-4 rounded-lg shadow">AP Computer Science A&B coursework + exam prep</li>
+      </ul>
+    </section>
+    
+    <section id="qualifications" class="py-10">
+      <h2 class="text-2xl font-semibold text-center mb-6">Qualifications</h2>
+      <ul class="space-y-3">
+        <li class="bg-white p-4 rounded-lg shadow">🎓 3.6 GPA from UC Berkeley 2017, B.A. Computer Science (so I know the UC curriculum!)</li>
+        <li class="bg-white p-4 rounded-lg shadow">🍏 8+ years of industry experience at household-name companies like Apple and Stripe</li>
+        <li class="bg-white p-4 rounded-lg shadow">👨‍🏫 Private tutoring experience during undergrad</li>
+      </ul>
+    </section>
+
+    <!-- LINKEDIN -->
+    <section class="text-center py-10">
+      <h2 class="text-xl font-medium mb-4">Connect</h2>
+      <a href="https://www.linkedin.com/in/eoinbmorgan/" target="_blank"
+         class="inline-block bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700">
+        Connect with me on LinkedIn →
+      </a>
+    </section>
+
+    <!-- --------- CONTACT ANCHOR --------- -->
+    <!-- Anchor element immediately before the contact section.
+         1) The id="#contact-top" is where both the href and JS will land.
+         2) tabindex="-1" allows script to focus it (accessibility).
+         3) scroll-margin-top provides offset if you have a fixed header (adjust if needed). -->
+    <div id="contact-top" tabindex="-1" class="scroll-mt-20"></div>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-10">
+      <h2 class="text-2xl font-semibold text-center mb-4">Contact Me</h2>
+      <p class="text-center text-gray-600 mb-6">Have a question? Fill the form below.</p>
+
+      <div class="rounded-xl shadow overflow-hidden">
+        <!-- Your provided Google Forms iframe -->
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSck3xBVcdc6oE7AJmSVSonmxswk6DG91UnY_u6UlOUlLoP3IQ/viewform?embedded=true"
+          title="Contact form"
+          class="w-full h-[1200px] border-0"
+          loading="lazy"
+        >
+          Loading…
+        </iframe>
+      </div>
+    </section>
+  </main>
+
+  <!-- FLOATING BUTTON: uses anchor href for native fallback and JS for behavior -->
+  <a href="#contact-top"
+     id="floatContactBtn"
+     class="fixed bottom-6 right-6 z-50 bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-full shadow-lg font-semibold">
+    Contact Me
+  </a>
+
+  <footer class="text-center text-gray-500 text-sm py-8">
+    © <span id="year"></span> Your Name
+  </footer>
+
+  <script>
+    // Update footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Robust JS: intercept clicks and explicitly scroll to the anchor element,
+    // then move focus there for accessibility. This works even if browser doesn't jump.
+    (function() {
+      const btn = document.getElementById('floatContactBtn');
+      const anchor = document.getElementById('contact-top');
+
+      btn.addEventListener('click', function(e) {
+        // Allow middle-click / ctrl/cmd+click to open anchor as link in new tab
+        if (e.metaKey || e.ctrlKey || e.button === 1) return;
+        e.preventDefault(); // stop the browser's default jump so we control it
+
+        // Use scrollIntoView with block:'start' to place anchor at top of viewport.
+        anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        // After scroll, set focus to anchor so keyboard users / screen readers land there.
+        // Using a small timeout helps ensure the element is in view on some browsers.
+        setTimeout(() => {
+          anchor.focus({ preventScroll: true });
+        }, 400);
+      });
+    })();
+  </script>
+</body>
+</html>
